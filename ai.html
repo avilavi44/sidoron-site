@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>סידורון — חיבור ל-Claude ול-ChatGPT</title>
+<link rel="icon" href="icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #EEF6F1; --ink: #16302A; --muted: #4D635A; --green: #1E7A55; --sun: #FFC53D; --card: #FFFFFF; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: Rubik, system-ui, -apple-system, sans-serif; line-height: 1.7; }
+  main { max-width: 780px; margin: 0 auto; padding: 40px 16px 64px; display: flex; flex-direction: column; gap: 18px; }
+  h1, h2 { font-family: Fredoka, Rubik, sans-serif; margin: 0; }
+  h1 { font-size: 34px; line-height: 1.2; }
+  h2 { font-size: 21px; }
+  .card { background: var(--card); border-radius: 22px; padding: 20px; }
+  .muted { color: var(--muted); }
+  ol, ul { margin: 6px 0 0; padding-inline-start: 22px; }
+  .url { direction: ltr; display: flex; gap: 8px; align-items: center; background: #F4F8F6; border-radius: 14px; padding: 10px 12px; font-family: ui-monospace, Menlo, monospace; font-size: 14px; word-break: break-all; }
+  .url code { flex: 1; }
+  button { font: inherit; font-weight: 600; border: 2px solid var(--green); background: #fff; color: var(--green); border-radius: 12px; padding: 6px 12px; cursor: pointer; flex: none; }
+  pre { direction: ltr; text-align: left; background: #F4F8F6; border-radius: 14px; padding: 10px 12px; overflow-x: auto; font-size: 14px; margin: 6px 0 0; }
+  a { color: var(--green); font-weight: 600; }
+  .en { direction: ltr; text-align: left; }
+</style>
+</head>
+<body>
+<main>
+  <h1>לדבר עם הסידור: חיבור סידורון ל-Claude ול-ChatGPT</h1>
+  <p>אפשר לחבר את סידורון לעוזר AI ולשאול אותו בעברית רגילה: ״מי לא ענתה עדיין לשבוע הבא?״, ״מה חסר ביום שלישי?״, ״דנה חולה מחר, תמצא לה מחליפה״. העוזר רואה ועושה רק מה שמותר לך באפליקציה.</p>
+
+  <div class="card">
+    <h2>כתובת החיבור</h2>
+    <div class="url"><code id="u">https://ipdqnfqhxtbkmhbtjodm.supabase.co/functions/v1/mcp</code><button onclick="navigator.clipboard.writeText(document.getElementById('u').textContent);this.textContent='הועתק'">העתקה</button></div>
+    <p class="muted">בזמן החיבור ייפתח דף כניסה של סידורון. נכנסים עם אותו חשבון Google של האפליקציה ומאשרים.</p>
+  </div>
+
+  <div class="card">
+    <h2>Claude (באתר, באפליקציה ובמחשב)</h2>
+    <ol>
+      <li>הגדרות ← <b>Connectors</b> ← <b>Add custom connector</b>.</li>
+      <li>שם: סידורון. כתובת: הכתובת שלמעלה. ← Add.</li>
+      <li>לוחצים <b>Connect</b>, נכנסים לסידורון ומאשרים.</li>
+      <li>בשיחה חדשה מדליקים את סידורון בתפריט הכלים ושואלים.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>ChatGPT</h2>
+    <ol>
+      <li>Settings ← <b>Apps &amp; Connectors</b> ← Advanced ← מדליקים <b>Developer mode</b>.</li>
+      <li>חוזרים ל-Apps &amp; Connectors ← <b>Create</b>. שם: סידורון. כתובת: הכתובת שלמעלה. Authentication: <b>OAuth</b>.</li>
+      <li>נכנסים לסידורון ומאשרים. בשיחה בוחרים את סידורון מתפריט ה-+.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Claude Code ועוזרים אחרים</h2>
+    <pre>claude mcp add --transport http sidoron https://ipdqnfqhxtbkmhbtjodm.supabase.co/functions/v1/mcp</pre>
+    <p class="muted">כל עוזר שתומך ב-MCP עם OAuth עובד עם אותה כתובת.</p>
+  </div>
+
+  <div class="card">
+    <h2>מה העוזר יכול לעשות</h2>
+    <ul>
+      <li>להציג את הטבלה הגדולה של שבוע: מי יכולה מתי, מי לא ענתה, מה חסר.</li>
+      <li>להציג צוות, סידור, לוח שנה והיעדרויות.</li>
+      <li>לעדכן זמינות, לדווח ״לא אוכל להגיע״, להציע מחליפות.</li>
+      <li>לרכזות: שיבוץ אוטומטי, שיבוץ ידני, קריאה פתוחה, תזכורת למי שלא ענתה, פרסום השבוע.</li>
+    </ul>
+    <p class="muted">לפני פעולה ששולחת הודעות לצוות העוזר מבקש אישור. הניתוק נעשה מתוך העוזר בכל רגע. <a href="privacy.html">מדיניות הפרטיות</a></p>
+  </div>
+
+  <section class="card en" dir="ltr" lang="en">
+    <h2>Connect Sidoron to Claude or ChatGPT (MCP)</h2>
+    <p>Add a custom connector with the URL above (OAuth). Sign in with the same account you use in the app and approve. The assistant acts with your own permissions in the app.</p>
+  </section>
+</main>
+</body>
+</html>
